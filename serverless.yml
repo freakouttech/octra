@@ -1,0 +1,64 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: freakout-serverless
+# app and org for use with dashboard.serverless.com
+app: freakout-serverless
+org: ksmike
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-west-1
+iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - lambda:InvokeFunction
+      - lambda:InvokeAsync
+    Resource: "*"
+# Plugins
+plugins:
+  - serverless-offline
+# you can add packaging information here
+package:
+ include:
+   - .dist/**
+#  exclude:
+#    - exclude-me.js
+#    - exclude-me-dir/**
+
+functions:
+  totalGains:
+    handler: dist/src/handlers/handler.totalGainsByCustomerId
+    events:
+      - http:
+          path: /totalGainsByCustomerId
+          method: get
+  totalTransaction:
+    handler: dist/src/handlers/handler.totalTransactionAmountByCustomer
+    events:
+      - http:
+          path: /totalTransactionAmountByCustomer
+          method: get
+  totalNumberOfTrades:
+    handler: dist/src/handlers/handler.totalNumberOfTradesByCustomer
+    events:
+      - http:
+          path: /totalNumberOfTradesByCustomer
+          method: get

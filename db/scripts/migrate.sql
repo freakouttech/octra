@@ -1,0 +1,1 @@
+COPY trade_analysis FROM '/data/data.csv' DELIMITER ',' CSV HEADER;
