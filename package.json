@@ -16,7 +16,7 @@
   "author": "michael copeland",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.601.0",
+    "aws-sdk": "^2.814.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-istanbul": "^0.12.2",
